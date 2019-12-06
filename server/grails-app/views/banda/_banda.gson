@@ -1,0 +1,13 @@
+import crudreact.Banda
+
+model{
+    Banda banda
+}
+
+json{
+    id banda.id
+
+    nome banda.nome
+
+    genero banda.genero
+}

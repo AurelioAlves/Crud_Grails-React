@@ -1,0 +1,18 @@
+import crudreact.Shows
+
+model {
+    Shows shows
+}
+
+json{
+    id shows.id
+
+    data shows.dataDoShow
+
+    local nome: shows.local.nome,
+            capacidade: shows.local.capacidade
+
+    def teste = shows.bandas.toList()
+
+    bandas nome: teste.nome, genero: teste.genero
+}

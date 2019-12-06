@@ -1,0 +1,13 @@
+import crudreact.Local
+
+model{
+    Local local
+}
+
+json {
+    id local.id
+
+    nome local.nome
+
+    capacidade local.capacidade
+}
