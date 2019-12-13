@@ -1,18 +1,23 @@
+import com.fasterxml.jackson.annotation.JsonFormat
 import crudreact.Shows
+import grails.converters.JSON
 
 model {
     Shows shows
 }
 
-json{
+json {
     id shows.id
-
-    data shows.dataDoShow
-
-    local nome: shows.local.nome,
+//
+    dataDoShow shows.dataDoShow.format("dd/MM/yyyy")
+//
+    local id: shows.local.id,
+            nome: shows.local.nome,
             capacidade: shows.local.capacidade
+//
 
+//
     def teste = shows.bandas.toList()
-
-    bandas nome: teste.nome, genero: teste.genero
+//
+    bandas id: teste.id, nome: teste.nome, genero: teste.genero
 }

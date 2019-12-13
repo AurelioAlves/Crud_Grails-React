@@ -11,26 +11,28 @@ class Banda extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {banda: [], nome: '', genero: 'Rock'}
+        this.state = {banda: [], nome: '', genero: 'Rock', id: null}
 
-        this.handleRemove = this.handleRemove.bind(this)
+        this.handleRemoveBanda = this.handleRemoveBanda.bind(this)
         this.handleChangeNome = this.handleChangeNome.bind(this)
         this.handleChangeGenero = this.handleChangeGenero.bind(this)
         this.handleAddBanda = this.handleAddBanda.bind(this)
+        this.handleEditBanda = this.handleEditBanda.bind(this)
     }
 
     componentDidMount() {
         axios.get('http://localhost:8080/banda')
             .then(res => {
                 this.setState({banda: res.data})
+                console.log(this.state.banda)
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
-    handleRemove(banda) {
-        axios.delete('http://localhost:8080/banda/' + banda)
+    handleRemoveBanda(id) {
+        axios.delete('http://localhost:8080/banda/' + id)
             .then(res => {
                 this.componentDidMount()
 
@@ -39,6 +41,11 @@ class Banda extends Component {
                 alert("Não foi possível deletar")
                 console.log(error)
             })
+    }
+
+    handleEditBanda(banda){
+         this.setState({nome:banda.nome, genero: banda.genero, id: banda.id})
+
     }
 
     handleChangeNome(e) {
@@ -53,8 +60,26 @@ class Banda extends Component {
         if(!this.state.nome.length && !this.state.genero.length){
             return
         }
+
         const nome = this.state.nome
         const genero = this.state.genero
+        const id = this.state.id
+
+        if(id != null){
+            axios({
+                method: 'put',
+                url: 'http://localhost:8080/banda/' + id,
+                data:{
+                    nome: nome,
+                    genero: genero
+                }
+            }).then(res => {
+                this.componentDidMount()
+                this.setState({nome:'', genero:'Rock', id: null})
+            }).catch(error => {
+                console.log(error)
+            })
+        }else{
         axios({
             method: 'post',
             url: 'http://localhost:8080/banda',
@@ -67,7 +92,7 @@ class Banda extends Component {
             this.setState({nome:'', genero:'Rock'})
         }).catch(error => {
             console.log(error)
-        })
+        })}
     }
 
     render() {
@@ -89,7 +114,8 @@ class Banda extends Component {
                     </div>
                     <Col>
                         <BandaList bandaList={this.state.banda}
-                                   handleRemove={this.handleRemove}>
+                                   handleRemoveBanda={this.handleRemoveBanda}
+                                   handleEditBanda={this.handleEditBanda}>
                         </BandaList>
                         <Link to="/">
                             Voltar

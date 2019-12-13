@@ -5,6 +5,7 @@ import './css/grails.css';
 import './css/main.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Container from "react-bootstrap/Container";
 
 class TesteList extends Component {
     constructor(props) {
@@ -20,29 +21,12 @@ class TesteList extends Component {
             .then(res => {
                 this.setState({shows: res.data});
             })
-
     }
 
     render() {
-        function formatData(date) {
-            let teste = date
-            let teste2 = new Date(teste)
-            let year = teste2.getFullYear()
-            let month = teste2.getMonth()
-            let dt = teste2.getDate()
-
-            if (dt > 10) {
-                dt = '0' + dt
-            }
-            if (month < 10) {
-                month = '0' + month;
-            }
-            return (dt + '/' + month + '/' + year)
-        }
-
         function renderShowList(show) {
             return (<tr key={show.id}>
-                <td>{formatData(show.data)}</td>
+                <td>{show.dataDoShow}</td>
                 <td>{show.local.nome}</td>
                 <td>{show.local.capacidade}</td>
                 <td>{show.bandas.nome.join(', ')}</td>
@@ -51,8 +35,8 @@ class TesteList extends Component {
         }
 
         return (
-            <div>
-                <div style={{width: 400}}>
+            <Container>
+                <div>
                     <table>
                         <thead>
                         <tr>
@@ -70,8 +54,14 @@ class TesteList extends Component {
                 </div>
               <Link to="/banda">
                 Link para Banda
-              </Link>
-            </div>
+              </Link><br/>
+                <Link to="/local">
+                    Link para Local
+                </Link><br/>
+                <Link to="/shows">
+                    Link para Show
+                </Link>
+            </Container>
         )
     }
 }

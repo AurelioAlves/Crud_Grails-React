@@ -8,4 +8,5 @@ class LocalController {
 	static responseFormats = ['json', 'xml']
 	
     def index() { }
+
 }

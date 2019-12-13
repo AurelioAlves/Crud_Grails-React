@@ -40,7 +40,7 @@ grails:
         types:
             json:
               - application/json
-              - text/json   
+              - text/json
             hal:
               - application/hal+json
               - application/hal+xml  

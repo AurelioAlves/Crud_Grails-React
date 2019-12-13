@@ -1,4 +1,5 @@
 import crudreact.Local
+import grails.converters.JSON
 
 model{
     Local local
@@ -10,4 +11,5 @@ json {
     nome local.nome
 
     capacidade local.capacidade
+
 }

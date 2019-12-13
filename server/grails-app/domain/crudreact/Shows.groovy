@@ -2,9 +2,9 @@ package crudreact
 
 import grails.rest.Resource
 
-@Resource(uri = "/show")
+
 class Shows {
-    Date dataDoShow
+    Date dataDoShow = new Date()
     Local local
 
     static hasMany = [bandas: Banda]
@@ -12,5 +12,6 @@ class Shows {
     static constraints = {
         dataDoShow nullable: false, blank:false, unique: true
         local nullable: false, blank:false
+
     }
 }

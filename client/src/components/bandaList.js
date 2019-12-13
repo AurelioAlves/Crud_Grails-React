@@ -8,8 +8,8 @@ export default function (props) {
                 <tr key={banda.id}>
                   <td>{banda.nome}</td>
                   <td>{banda.genero}</td>
-                    <td><Button variant='link' onClick={()=> props.handleRemove(banda.id)}>Remover</Button></td>
-                    <td><a>Editar</a></td>
+                    <td><Button variant='link' onClick={()=> props.handleRemoveBanda(banda.id)}>Remover</Button></td>
+                    <td><Button variant='link' onClick={() => props.handleEditBanda(banda)}>Editar</Button></td>
                 </tr>
         ))
     }

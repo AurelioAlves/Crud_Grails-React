@@ -6,7 +6,8 @@ import './css/App.css';
 import './css/grails.css';
 import './css/main.css';
 import Banda from './Banda';
-import Local from './Local'
+import Local from './Local';
+import Shows from './Shows'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
             <Route exact path='/' component={App}/>
             <Route path='/banda' component={Banda}/>
             <Route path='/local' component={Local}/>
+            <Route path='/shows' component={Shows} />
         </div>
     </Router>,
   document.getElementById('root')
